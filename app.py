@@ -68,7 +68,7 @@ if uploaded_files:
         if st.checkbox(f"Show Visualization for {file.name}"):
             st.bar_chart(df.select_dtypes(include='number').iloc[:, :2])  # Plot the first two numeric columns as a bar chart
         
-        # Section to choose file conversion type (CSV , Excel and Json)
+        # Section to choose file conversion type (CSV , Excel and)
         st.subheader("🔄 Conversion Options")
         conversion_type = st.radio(f"Convert {file.name} to:", ["CSV", "Excel","Json"], key=file.name)
         if st.button(f"Convert {file.name}"):
@@ -88,11 +88,13 @@ if uploaded_files:
             buffer.seek(0)
             
             # Download button for the converted file
-            st.download_button(
+            button = st.download_button(
                 label=f"⬇️ Download {file.name} as {conversion_type}",
                 data=buffer,
                 file_name=file_name,
                 mime=mime_type
             )
 
-st.success("🎉 All files processed successfully!")  # Display success message when all files are processed
+            st.success("🎉 All files processed successfully!")  # Display success message when all files are processed
+                 
+
